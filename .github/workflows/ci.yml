@@ -1,0 +1,28 @@
+name: Expense Tracker CI
+
+on:
+  push:
+    branches: [main] # Runs the workflow on push to the main branch
+  pull_request:
+    branches: [main] # Runs the workflow on pull requests to the main branch
+
+jobs:
+  run-tracker:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12' 
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install matplotlib
+
+    - name: Run Expense Tracker
+      run: python expense_tracker.py # Replace with the actual name of your script
